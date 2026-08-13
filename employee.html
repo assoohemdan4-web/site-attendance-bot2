@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Employee Portal • Site Attendance</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><span class="brand-mark small">SA</span><strong>My Attendance</strong></div>
+  <button id="logoutBtn" class="ghost">Logout</button>
+</header>
+<main class="container">
+  <section class="hero"><div><p class="eyebrow">EMPLOYEE PORTAL</p><h1 id="employeeName">Employee</h1><p id="employeeMeta" class="muted"></p></div></section>
+  <section class="panel">
+    <h2>Monthly attendance</h2>
+    <p class="muted">This prototype reads the last imported workbook from this browser session.</p>
+    <div id="employeeTable" class="table-wrap"></div>
+  </section>
+</main>
+<script src="js/config.js"></script>
+<script src="js/employee.js"></script>
+</body>
+</html>

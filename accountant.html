@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Accountant Portal • Site Attendance</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><span class="brand-mark small">SA</span><strong>Site Attendance</strong></div>
+  <div class="top-actions"><span id="cycleBadge" class="badge">No file loaded</span><button id="logoutBtn" class="ghost">Logout</button></div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">ACCOUNTANT CONTROL CENTER</p>
+      <h1>Attendance Operations</h1>
+      <p class="muted">Upload the same workbook used at the site. The engine reads <b>الشهر</b>, <b>داتا</b> and <b>السحب</b> and keeps days with no punches for your decision.</p>
+    </div>
+    <div class="hero-status" id="engineStatus">Engine ready</div>
+  </section>
+
+  <section class="grid-4">
+    <div class="kpi"><span>Employees</span><strong id="kpiEmployees">0</strong></div>
+    <div class="kpi"><span>Raw fingerprints</span><strong id="kpiPunches">0</strong></div>
+    <div class="kpi"><span>Days needing review</span><strong id="kpiReview">0</strong></div>
+    <div class="kpi"><span>One-punch cases</span><strong id="kpiMissing">0</strong></div>
+  </section>
+
+  <section class="panel cycle-panel">
+    <div class="panel-head">
+      <div><h2>1. Select attendance cycle</h2><p class="muted">The cycle always starts on the 26th and ends on the 25th of the following month.</p></div>
+      <span id="cycleInfo" class="badge">Import a workbook first.</span>
+    </div>
+    <div class="cycle-controls">
+      <label>Attendance month
+        <input id="cycleMonth" type="month">
+      </label>
+      <button id="applyCycleBtn" class="primary" disabled>Apply cycle</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><h2>2. Import workbook</h2><p class="muted">Expected sheets: الشهر • داتا • السحب • 1</p></div></div>
+    <div class="upload-row">
+      <label class="upload">
+        <input id="excelFile" type="file" accept=".xlsx,.xls">
+        <span>Choose Excel file</span>
+      </label>
+      <button id="demoBtn" class="secondary">Load current workbook test</button>
+      <button id="publishBtn" class="secondary" disabled>Export employee portal package</button>
+    </div>
+    <div id="importMessage" class="message"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div><h2>3. Employee report</h2><p class="muted">Select an employee to calculate the cycle from raw punches.</p></div>
+      <select id="employeeSelect" class="wide-select"><option value="">Import a file first</option></select>
+    </div>
+    <div id="employeeSummary" class="summary-grid"></div>
+    <div class="table-wrap">
+      <table id="attendanceTable">
+        <thead><tr>
+          <th>Date</th><th>Day</th><th>First</th><th>Last</th><th>Scheduled</th>
+          <th>Late</th><th>Early leave</th><th>Early OT</th><th>Late OT</th><th>Status</th><th>Review</th>
+        </tr></thead>
+        <tbody><tr><td colspan="11" class="empty">No report yet.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><h2>4. Accountant review queue</h2><p class="muted">No-punch days are intentionally not classified as absence.</p></div></div>
+    <div class="table-wrap">
+      <table id="reviewTable">
+        <thead><tr><th>Employee</th><th>Code</th><th>Date</th><th>Day</th><th>Current state</th><th>Decision</th></tr></thead>
+        <tbody><tr><td colspan="6" class="empty">No review items.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/attendance.js"></script>
+<script src="js/accountant.js"></script>
+</body>
+</html>
